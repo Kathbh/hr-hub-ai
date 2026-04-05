@@ -42,7 +42,7 @@
   }
 
   .send-btn {
-    background-color: #ff4fa3;
+    background-color: #4f78ff;
     border: none;
     padding: 10px 20px;
     color: white;
@@ -52,7 +52,7 @@
   }
 
   .send-btn:hover {
-    background-color: #ff2c8f;
+    background-color: #2cc3ff;
   }
 
   textarea {
@@ -63,7 +63,7 @@
 </style>
 
 <div class="chat-container">
-  <h1>Chat with your AI Assistant</h1>
+  <h1>Chat with your HR Global AI Assistant</h1>
 
   <% if @messages.present? %>
     <div class="message-card">
@@ -90,4 +90,3 @@
     <%= f.submit "Send", class: "send-btn" %>
   <% end %>
 </div>
-
