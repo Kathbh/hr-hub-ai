@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # Post Requests from the URL path, send request to AiController, method "chat"
+  post "ai/chat", to: "ai#chat"
 end
