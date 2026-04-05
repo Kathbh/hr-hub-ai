@@ -380,7 +380,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.6)
-  ruby_llm (~> 1.14.1)
+  ruby_llm
   sassc-rails
   selenium-webdriver
   simple_form!
