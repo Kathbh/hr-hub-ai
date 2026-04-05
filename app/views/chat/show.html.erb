@@ -1,0 +1,23 @@
+<div class="container mt-5" style="max-width: 700px;">
+  <h1 class="mb-4">Chat with your AI Assistant</h1>
+
+  <% if @messages.present? %>
+    <div class="card p-3 mb-4">
+      <% @messages.each do |msg| %>
+        <p>
+          <strong><%= msg[:role].capitalize %>:</strong>
+          <%= msg[:content] %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form_with url: chat_path, method: :post, local: true do |f| %>
+    <div class="mb-3">
+      <%= f.label :message, "Your message" %>
+      <%= f.text_area :message, class: "form-control", rows: 3 %>
+    </div>
+
+    <%= f.submit "Send", class: "btn btn-primary" %>
+  <% end %>
+</div>
