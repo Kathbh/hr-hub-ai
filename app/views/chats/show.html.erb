@@ -1,13 +1,82 @@
-<div class="container mt-5" style="max-width: 700px;">
-  <h1 class="mb-4">Chat with your AI Assistant</h1>
+<style>
+  body {
+    background: linear-gradient(135deg, #ffd6f2 0%, #d6e8ff 100%);
+    font-family: "Inter", sans-serif;
+  }
+
+  .chat-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: 700;
+    color: #ff4fa3;
+    margin-bottom: 25px;
+  }
+
+  .message-card {
+    background: #f8f9ff;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+  }
+
+  .user-msg {
+    background: #ffe0f3;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .assistant-msg {
+    background: #e0ecff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .send-btn {
+    background-color: #ff4fa3;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .send-btn:hover {
+    background-color: #ff2c8f;
+  }
+
+  textarea {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 12px;
+  }
+</style>
+
+<div class="chat-container">
+  <h1>Chat with your AI Assistant</h1>
 
   <% if @messages.present? %>
-    <div class="card p-3 mb-4">
+    <div class="message-card">
       <% @messages.each do |msg| %>
-        <p>
-          <strong><%= msg[:role].capitalize %>:</strong>
-          <%= msg[:content] %>
-        </p>
+        <% if msg[:role] == "user" %>
+          <div class="user-msg">
+            <strong>You:</strong> <%= msg[:content] %>
+          </div>
+        <% else %>
+          <div class="assistant-msg">
+            <strong>Assistant:</strong> <%= msg[:content] %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>
@@ -18,6 +87,7 @@
       <%= f.text_area :message, class: "form-control", rows: 3 %>
     </div>
 
-    <%= f.submit "Send", class: "btn btn-primary" %>
+    <%= f.submit "Send", class: "send-btn" %>
   <% end %>
 </div>
+
