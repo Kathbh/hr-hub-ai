@@ -15,4 +15,11 @@ Rails.application.routes.draw do
   # root "posts#index"
   # Post Requests from the URL path, send request to AiController, method "chat"
   post "ai/chat", to: "ai#chat"
+
+  namespace :hr do   #d3
+    get "dashboard", to: "dashboard#show" #add the missing part
+    resources :cases, only: [:index, :show] do
+      resources :messages, only: [:create] #add the HR reply route
+    end
+  end
 end

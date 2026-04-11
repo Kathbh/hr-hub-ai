@@ -61,6 +61,29 @@ class ChatsController < ApplicationController
       channel: "chat"
     )
 
+    # Detect if AI could not answer
+    fallback_phrases = [
+      "vary depending",
+      "local laws",
+      "company policy",
+      "contact your hr",
+      "i don’t have access",
+      "i don't have access",
+      "i cannot determine",
+      "i’m not sure",
+      "i'm not sure",
+      "depends on your company"
+    ]
+
+    if fallback_phrases.any? { |phrase| ai_reply.downcase.include?(phrase) }
+      Case.create!(
+        employee: @employee,
+        category: "General Inquiry",
+        status: :open,  #updated
+        description: user_message
+      )
+    end
+
     redirect_to employee_path
   end
 end

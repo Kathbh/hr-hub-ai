@@ -1,0 +1,29 @@
+<h1>HR Agent Dashboard</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Case ID</th>
+      <th>Employee</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Created</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cases.each do |c| %>
+      <tr>
+        <td><%= c.id %></td>
+        <td><%= c.employee.first_name %></td>
+        <td><%= c.category %></td>
+        <td><%= c.status %></td>
+        <td><%= c.priority %></td>
+        <td><%= c.created_at.strftime("%b %d, %Y") %></td>
+        <td><%= link_to "View", hr_case_path(c) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
