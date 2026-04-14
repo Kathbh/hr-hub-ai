@@ -92,7 +92,8 @@ Employee.all.each do |employee|
   User.create!(
     email: employee.email,
     password: "password123",
-    employee: employee
+    employee: employee,
+    role: employee.role #the fix
   )
 end
 

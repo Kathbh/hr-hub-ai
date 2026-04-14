@@ -8,6 +8,7 @@ class Hr::CasesController < ApplicationController
 
   def show
     @case = Case.find(params[:id])
+    @employee = @case.employee #add after turbo
     @messages = @case.messages.order(created_at: :asc)
   end
 

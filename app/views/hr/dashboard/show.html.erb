@@ -1,7 +1,42 @@
-<h1>HR Dashboard</h1>
+<div class="hr-dashboard-grid">
 
-<ul>
-  <li><%= link_to "My Cases", hr_cases_path %></li>
-  <li><%= link_to "Employees", "#" %></li>
-  <li><%= link_to "Policies", "#" %></li>
-</ul>
+  <!-- LEFT TOP: CASE LIST -->
+  <div class="cases-panel">
+    <h2>Cases</h2>
+    <% @cases.each do |c| %>
+      <div class="case-item">
+        <%= link_to "Case ##{c.id} — #{c.category}",
+            hr_case_path(c),
+            data: { turbo_frame: "employee_panel" } %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- RIGHT TOP: EMPLOYEE PROFILE -->
+  <turbo-frame id="employee_panel">
+    <div class="employee-panel">
+      <h2>Employee Profile</h2>
+      <p>Select a case to view employee details.</p>
+    </div>
+  </turbo-frame>
+
+  <!-- LEFT BOTTOM: POLICIES -->
+  <div class="policies-panel">
+    <h2>Policies</h2>
+    <% @policies.each do |p| %>
+      <p><%= p.title %></p>
+    <% end %>
+  </div>
+
+  <!-- RIGHT BOTTOM: HR NOTES -->
+  <div class="notes-panel">
+    <h2>HR Notes</h2>
+    <textarea rows="6" placeholder="Write internal notes here..."></textarea>
+  </div>
+
+</div>
+
+<!-- Floating AI button -->
+<div class="ai-button">
+  🤖
+</div>

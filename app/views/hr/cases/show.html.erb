@@ -1,50 +1,15 @@
-<h1>Case <%= @case.id %></h1>
+<turbo-frame id="employee_panel">
+  <div class="employee-panel">
+    <h2><%= @employee.full_name %></h2>
 
-<!-- Employee Info -->
-<section>
-  <h2>Employee Information</h2>
-  <p><strong>Name:</strong> <%= @case.employee.first_name %> <%= @case.employee.last_name %></p>
-  <p><strong>Employee ID:</strong> <%= @case.employee.employee_id %></p>
-  <p><strong>Role:</strong> <%= @case.employee.role %></p>
-</section>
+    <p><strong>Role:</strong> <%= @employee.role %></p>
+    <p><strong>Country:</strong> <%= @employee.country %></p>
+    <p><strong>Email:</strong> <%= @employee.email %></p>
 
-<hr>
+    <hr>
 
-<!-- Case Info -->
-<section>
-  <h2>Case Details</h2>
-  <p><strong>Category:</strong> <%= @case.category %></p>
-  <p><strong>Status:</strong> <%= @case.status %></p>
-  <p><strong>Priority:</strong> <%= @case.priority %></p>
-  <p><strong>Description:</strong> <%= @case.description %></p>
-  <p><strong>Created:</strong> <%= @case.created_at.strftime("%b %d, %Y") %></p>
-</section>
-
-<hr>
-
-<!-- Messages -->
-<section>
-  <h2>Messages</h2>
-
-  <% @messages.each do |m| %>
-    <div style="margin-bottom: 10px;">
-      <p><strong><%= m.sender %>:</strong> <%= m.content %></p>
-      <p style="font-size: 12px; color: gray;"><%= m.created_at.strftime("%H:%M %b %d") %></p>
-    </div>
-  <% end %>
-</section>
-
-<hr>
-
-<!-- HR Reply -->
-<section>
-  <h2>Reply to Employee</h2>
-
-  <form action="<%= hr_case_messages_path(@case) %>" method="post" data-turbo="false">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
-    <textarea name="content" rows="3" placeholder="Write your reply..."></textarea>
-    <br>
-    <input type="submit" value="Send Reply">
-  </form>
-</section>
+    <h3>Case Details</h3>
+    <p><strong>Category:</strong> <%= @case.category %></p>
+    <p><strong>Description:</strong> <%= @case.description %></p>
+  </div>
+</turbo-frame>
