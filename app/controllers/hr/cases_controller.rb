@@ -6,10 +6,17 @@ class Hr::CasesController < ApplicationController
     @cases = Case.order(created_at: :desc)
   end
 
+  # def show
+  #   @case = Case.find(params[:id])
+  #   @employee = @case.employee #add after turbo
+  #   @messages = @case.messages.order(created_at: :asc)
+  # end
+
   def show
     @case = Case.find(params[:id])
-    @employee = @case.employee #add after turbo
-    @messages = @case.messages.order(created_at: :asc)
+    @employee = @case.employee
+
+    render :show, layout: false
   end
 
   private

@@ -12,32 +12,34 @@
   .home-container {
     text-align: center;
     background: white;
-    padding: 50px 40px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    max-width: 600px;
+    padding: 55px 45px;
+    border-radius: 28px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    max-width: 650px;
+    width: 90%;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 700;
     color: #ff4fa3;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
   }
 
   p {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 35px;
+    font-size: 1.25rem;
+    color: #444;
+    margin-bottom: 40px;
+    line-height: 1.5;
   }
 
   .start-btn {
     background: linear-gradient(135deg, #ff4fa3, #6ea8ff);
     border: none;
-    padding: 15px 35px;
+    padding: 16px 40px;
     color: white;
-    font-size: 1.2rem;
-    border-radius: 12px;
+    font-size: 1.25rem;
+    border-radius: 14px;
     cursor: pointer;
     font-weight: 600;
     text-decoration: none;
@@ -46,14 +48,14 @@
   }
 
   .start-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
   }
 </style>
 
 <div class="home-container">
-  <h1>Welcome to Your HR Global Hub</h1>
-  <p>Your personalized HR companion, is ready to help you anytime.</p>
+  <h1>Welcome to Your HR Hub</h1>
+  <p>All the Human Resources support you need, in one place.</p>
 
-  <%= link_to "Start Chatting", chat_path, class: "start-btn" %>
+  <%= link_to "Start Here", new_user_session_path, class: "start-btn" %>
 </div>

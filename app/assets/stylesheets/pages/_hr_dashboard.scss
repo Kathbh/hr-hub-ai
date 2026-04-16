@@ -1,32 +1,103 @@
+/* Background + global font */
+body {
+  background: linear-gradient(135deg, #ffd6f2 0%, #d6e8ff 100%);
+  font-family: "Inter", sans-serif;
+}
+
+/* Main grid layout */
 .hr-dashboard-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 1fr;
-  gap: 20px;
+  gap: 25px;
   height: 90vh;
   padding: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
+/* Shared card style */
 .cases-panel,
 .employee-panel,
 .policies-panel,
 .notes-panel {
-  background: #f8f4ff;
-  border-radius: 12px;
-  padding: 20px;
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
   overflow-y: auto;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
+/* Section titles */
+.cases-panel h2,
+.employee-panel h2,
+.policies-panel h2,
+.notes-panel h2 {
+  font-weight: 700;
+  color: #ff4fa3;
+  margin-bottom: 15px;
+}
+
+/* Case list items */
+.case-item {
+  background: #f8f9ff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.case-item:hover {
+  background: #e0ecff;
+  transform: scale(1.02);
+}
+
+.case-item a {
+  text-decoration: none;
+  color: #4f78ff;
+  font-weight: 600;
+}
+
+/* Employee profile text */
+.employee-panel p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+/* Policies list */
+.policies-panel p {
+  background: #ffe0f3;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Notes textarea */
+.notes-panel textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Floating AI button */
 .ai-button {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: #6c5ce7;
+  background: #ff4fa3;
   color: white;
   font-size: 28px;
   padding: 15px;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+  z-index: 9999;
+}
+
+.ai-button:hover {
+  transform: scale(1.1);
 }
