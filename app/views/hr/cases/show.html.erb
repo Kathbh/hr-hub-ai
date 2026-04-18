@@ -1,15 +1,33 @@
-<turbo-frame id="employee_panel">
-  <div class="employee-panel">
-    <h2><%= @employee.full_name %></h2>
+<turbo-frame id="dynamic-panels">
 
-    <p><strong>Role:</strong> <%= @employee.role %></p>
-    <p><strong>Country:</strong> <%= @employee.country %></p>
-    <p><strong>Email:</strong> <%= @employee.email %></p>
+  <turbo-frame id="employee_panel">
+    <div class="employee-panel">
+      <h2><%= @employee.full_name %></h2>
 
-    <hr>
+      <p><strong>Role:</strong> <%= @employee.role %></p>
+      <p><strong>Country:</strong> <%= @employee.country %></p>
+      <p><strong>Email:</strong> <%= @employee.email %></p>
 
-    <h3>Case Details</h3>
-    <p><strong>Category:</strong> <%= @case.category %></p>
-    <p><strong>Description:</strong> <%= @case.description %></p>
-  </div>
+      <hr>
+
+      <h3>Case Details</h3>
+      <p><strong>Category:</strong> <%= @case.category %></p>
+      <p><strong>Description:</strong> <%= @case.description %></p>
+    </div>
+  </turbo-frame>
+
+  <turbo-frame id="messages_panel">
+    <div class="messages-panel">
+      <h2>Messages</h2>
+
+      <% @messages.each do |m| %>
+        <div class="message-item">
+          <p><strong><%= m.employee.full_name %>:</strong> <%= m.content %></p>
+          <p class="timestamp"><%= m.created_at.strftime("%b %d, %H:%M") %></p>
+        </div>
+      <% end %>
+    </div>
+  </turbo-frame>
+
 </turbo-frame>
+

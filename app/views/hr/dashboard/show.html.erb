@@ -7,17 +7,29 @@
       <div class="case-item">
         <%= link_to "Case ##{c.id} — #{c.category}",
             hr_case_path(c),
-            data: { turbo_frame: "employee_panel" } %>
+            data: { turbo_frame: "dynamic-panels" } %>
       </div>
     <% end %>
   </div>
 
-  <!-- RIGHT TOP: EMPLOYEE PROFILE -->
-  <turbo-frame id="employee_panel">
-    <div class="employee-panel">
-      <h2>Employee Profile</h2>
-      <p>Select a case to view employee details.</p>
-    </div>
+  <!-- RIGHT SIDE: EMPLOYEE + MESSAGES (Turbo needs them grouped) -->
+  <turbo-frame id="dynamic-panels" src="">
+
+    <!-- EMPLOYEE PROFILE -->
+    <turbo-frame id="employee_panel">
+      <div class="employee-panel">
+        <h2>Employee Profile</h2>
+        <p>Select a case to view employee details.</p>
+      </div>
+    </turbo-frame>
+
+    <!-- MESSAGES -->
+    <turbo-frame id="messages_panel">
+      <div class="messages-panel">
+        <h2>Messages</h2>
+        <p>Select a case to view messages.</p>
+      </div>
+    </turbo-frame>
   </turbo-frame>
 
   <!-- LEFT BOTTOM: POLICIES -->

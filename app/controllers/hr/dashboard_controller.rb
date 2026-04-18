@@ -4,5 +4,13 @@ class Hr::DashboardController < ApplicationController
   def show
     @cases = Case.all
     @policies = Policy.all
+    # @case = Case.find(params[:id])
+    # @employee = @case.employee
+    # @messages = @case.messages.order(created_at: :asc)
+
+    respond_to do |format|
+    # format.turbo_stream { render :show, layout: false }
+      format.html
+    end
   end
 end

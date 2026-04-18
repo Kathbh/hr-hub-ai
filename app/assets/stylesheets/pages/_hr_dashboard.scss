@@ -7,8 +7,8 @@ body {
 /* Main grid layout */
 .hr-dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;      /* Left column, Right column */
+  grid-template-rows: 2fr 2fr 1fr;     /* Profile, Messages, Notes */
   gap: 25px;
   height: 90vh;
   padding: 20px;
@@ -16,11 +16,41 @@ body {
   margin: 0 auto;
 }
 
+/* LEFT COLUMN */
+.cases-panel {
+  grid-column: 1;
+  grid-row: 1; /* Top-left */
+}
+
+.policies-panel {
+  grid-column: 1;
+  grid-row: 2 / 4; /* Fills entire left bottom */
+}
+
+/* RIGHT COLUMN */
+turbo-frame#employee_panel,
+.employee-panel {
+  grid-column: 2;
+  grid-row: 1; /* Top-right (2/5 height) */
+}
+
+turbo-frame#messages_panel,
+.messages-panel {
+  grid-column: 2;
+  grid-row: 2; /* Middle-right (2/5 height) */
+}
+
+.notes-panel {
+  grid-column: 2;
+  grid-row: 3; /* Bottom-right (1/5 height) */
+}
+
 /* Shared card style */
 .cases-panel,
 .employee-panel,
 .policies-panel,
-.notes-panel {
+.notes-panel,
+.messages-panel {
   background: white;
   border-radius: 20px;
   padding: 25px;
@@ -32,7 +62,8 @@ body {
 .cases-panel h2,
 .employee-panel h2,
 .policies-panel h2,
-.notes-panel h2 {
+.notes-panel h2,
+.messages-panel h2 {
   font-weight: 700;
   color: #ff4fa3;
   margin-bottom: 15px;
@@ -100,4 +131,12 @@ body {
 
 .ai-button:hover {
   transform: scale(1.1);
+}
+
+#dynamic-panels {
+  display: contents;
+}
+
+turbo-frame {
+  display: block;
 }
