@@ -17,6 +17,16 @@ class Hr::CasesController < ApplicationController
     end
   end
 
+  def update_status
+    @case = Case.find(params[:id])
+    @case.update(status: params[:status])
+
+    @employee = @case.employee
+    @messages = @case.messages.order(created_at: :asc)
+
+    render :show, layout: false
+  end
+
   private
 
   def require_hr_role

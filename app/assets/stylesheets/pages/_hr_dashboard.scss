@@ -2,6 +2,7 @@
 body {
   background: linear-gradient(135deg, #ffd6f2 0%, #d6e8ff 100%);
   font-family: "Inter", sans-serif;
+  overflow: visible !important; /* Ensure floating elements are visible */
 }
 
 /* Main grid layout */
@@ -14,6 +15,7 @@ body {
   padding: 20px;
   max-width: 1300px;
   margin: 0 auto;
+  overflow: visible !important; /* Prevent clipping of floating button */
 }
 
 /* LEFT COLUMN */
@@ -114,8 +116,8 @@ turbo-frame#messages_panel,
 }
 
 /* Floating AI button */
-.ai-button {
-  position: fixed;
+.floating-ai-button {
+  position: fixed !important; /* Ensure it floats above the grid */
   bottom: 30px;
   right: 30px;
   background: #ff4fa3;
@@ -126,17 +128,49 @@ turbo-frame#messages_panel,
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   transition: transform 0.2s ease;
-  z-index: 9999;
+  z-index: 999999 !important; /* Ensure visibility */
 }
 
-.ai-button:hover {
+.floating-ai-button:hover {
   transform: scale(1.1);
+  opacity: 0.9;
 }
 
+/* Turbo frames */
 #dynamic-panels {
   display: contents;
 }
 
 turbo-frame {
   display: block;
+}
+
+/* Status buttons */
+.status-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.status-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #bfbfbf; /* soft gray */
+  color: #333;
+  font-weight: 500;
+}
+
+/* Hidden utility */
+.hidden {
+  display: none;
+}
+
+body {
+  overflow: visible !important;
+}
+
+.hr-dashboard-grid {
+  overflow: visible !important;
 }

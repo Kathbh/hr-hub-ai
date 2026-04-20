@@ -13,6 +13,33 @@
       <h3>Case Details</h3>
       <p><strong>Category:</strong> <%= @case.category %></p>
       <p><strong>Description:</strong> <%= @case.description %></p>
+
+      <h3>Status: <%= @case.status.humanize %></h3>
+      <div class="status-buttons">
+        <%= button_to "Open",
+            update_status_hr_case_path(@case, status: "open"),
+            method: :patch,
+            data: { turbo_frame: "dynamic-panels" },
+            class: "status-btn open" %>
+
+        <%= button_to "On Hold",
+            update_status_hr_case_path(@case, status: "on_hold"),
+            method: :patch,
+            data: { turbo_frame: "dynamic-panels" },
+            class: "status-btn on-hold" %>
+
+        <%= button_to "Resolved",
+            update_status_hr_case_path(@case, status: "resolved"),
+            method: :patch,
+            data: { turbo_frame: "dynamic-panels" },
+            class: "status-btn resolved" %>
+
+        <%= button_to "Cancelled",
+            update_status_hr_case_path(@case, status: "cancelled"),
+            method: :patch,
+            data: { turbo_frame: "dynamic-panels" },
+            class: "status-btn cancelled" %>
+      </div>
     </div>
   </turbo-frame>
 
@@ -30,4 +57,3 @@
   </turbo-frame>
 
 </turbo-frame>
-

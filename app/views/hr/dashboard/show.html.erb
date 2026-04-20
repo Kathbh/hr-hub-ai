@@ -45,8 +45,30 @@
     <h2>HR Notes</h2>
     <textarea rows="6" placeholder="Write internal notes here..."></textarea>
   </div>
-
 </div>
 
-<!-- Floating AI button -->
-<%= link_to "🤖", chat_path, class: "ai-button" %>
+<% if ["hr_agent", "hr_bt", "payroll", "benefits", "gta"].include?(current_user.role) %>
+  <div id="ai-toggle"
+       class="floating-ai-button"
+       data-action="click->ai-window#toggle">
+    🤖
+  </div>
+
+  <div id="ai-window"
+       class="ai-mini-window hidden"
+       data-controller="ai-window"
+       data-ai-window-target="window">
+
+    <h3>AI Assistant</h3>
+
+    <div id="ai_panel">
+      <p class="placeholder">Click Generate to get AI help.</p>
+    </div>
+
+    <button id="ai-close"
+            class="ai-close-btn"
+            data-action="click->ai-window#close">
+      ✖
+    </button>
+  </div>
+<% end %>

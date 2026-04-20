@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :hr do   #d3
     get "dashboard", to: "dashboard#show" #add the missing part
     resources :cases, only: [:index, :show] do
+      patch :update_status, on: :member   # d4 status buttons
       resources :messages, only: [:create] #add the HR reply route
     end
   end

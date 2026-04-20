@@ -11,7 +11,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-    <body>
+  <body>
     <% if user_signed_in? %>
       <%= button_to "Logout", destroy_user_session_path, method: :delete %>
     <% end %>
@@ -19,3 +19,4 @@
     <%= yield %>
   </body>
 </html>
+
