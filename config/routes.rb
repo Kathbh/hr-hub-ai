@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # Post Requests from the URL path, send request to AiController, method "chat"
-  post "ai/chat", to: "ai#chat"
+  # post "ai/chat", to: "ai#chat"
+  post "ai", to: "ai#create"
 
   namespace :hr do   #d3
     get "dashboard", to: "dashboard#show" #add the missing part

@@ -4,6 +4,7 @@ class Hr::DashboardController < ApplicationController
   def show
     @cases = Case.all
     @policies = Policy.all
+    @ai_response = params[:ai]
     # @case = Case.find(params[:id])
     # @employee = @case.employee
     # @messages = @case.messages.order(created_at: :asc)

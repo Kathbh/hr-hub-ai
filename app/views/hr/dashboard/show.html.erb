@@ -45,30 +45,52 @@
     <h2>HR Notes</h2>
     <textarea rows="6" placeholder="Write internal notes here..."></textarea>
   </div>
+
+    <!-- RIGHT SIDE: AI PANEL -->
+  <div id="ai-panel" class="ai-side-panel" data-turbo="false">
+    <button id="close-ai-panel" class="close-ai-btn">✖</button>
+
+    <h2>AI Assistant</h2>
+
+    <%= form_with url: ai_path, method: :post, data: { turbo: false } do |f| %>
+      <%= f.text_area :prompt, rows: 4, placeholder: "Ask the AI…" %>
+      <%= f.submit "Generate", class: "ai-generate-btn" %>
+    <% end %>
+
+    <% if @ai_response.present? %>
+      <div class="ai-response-box">
+        <p><%= @ai_response %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<% if ["hr_agent", "hr_bt", "payroll", "benefits", "gta"].include?(current_user.role) %>
-  <div id="ai-toggle"
-       class="floating-ai-button"
-       data-action="click->ai-window#toggle">
-    🤖
-  </div>
+<%= link_to "🤖", "#ai-panel", class: "floating-ai-button" %>
 
-  <div id="ai-window"
-       class="ai-mini-window hidden"
-       data-controller="ai-window"
-       data-ai-window-target="window">
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector(".floating-ai-button")
+    const panel = document.querySelector("#ai-panel")
+    const closeBtn = document.querySelector("#close-ai-panel")
 
-    <h3>AI Assistant</h3>
+    // 1. Open when clicking the button
+    button.addEventListener("click", (event) => {
+      event.preventDefault()
+      panel.style.display = "block"
+      panel.scrollIntoView({ behavior: "smooth" })
+    })
 
-    <div id="ai_panel">
-      <p class="placeholder">Click Generate to get AI help.</p>
-    </div>
+    // 2. Close when clicking the X
+    closeBtn.addEventListener("click", () => {
+      panel.style.display = "none"
+    })
 
-    <button id="ai-close"
-            class="ai-close-btn"
-            data-action="click->ai-window#close">
-      ✖
-    </button>
-  </div>
-<% end %>
+    // 3. If AI responded, open automatically
+    const aiResponseExists = "<%= @ai_response.present? %>" === "true"
+    if (aiResponseExists) {
+      panel.style.display = "block"
+      panel.scrollIntoView({ behavior: "smooth" })
+    }
+  })
+</script>
+

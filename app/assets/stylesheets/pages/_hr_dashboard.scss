@@ -8,7 +8,7 @@ body {
 /* Main grid layout */
 .hr-dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;      /* Left column, Right column */
+  grid-template-columns: 1fr 2fr 1fr;      /* Left column, Right column */
   grid-template-rows: 2fr 2fr 1fr;     /* Profile, Messages, Notes */
   gap: 25px;
   height: 90vh;
@@ -164,7 +164,7 @@ turbo-frame {
 
 /* Hidden utility */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -173,4 +173,17 @@ body {
 
 .hr-dashboard-grid {
   overflow: visible !important;
+}
+
+.ai-side-panel {
+  display: none;
+}
+
+.close-ai-btn {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #ff4fa3;
 }
