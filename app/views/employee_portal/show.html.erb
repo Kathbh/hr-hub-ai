@@ -134,10 +134,20 @@
   <h2>Policies</h2>
   <% @policies.each do |p| %>
     <div class="policy-item">
-      <strong><%= p.title %></strong> — <%= p.category %>
+      <%= link_to "#{p.title} — #{p.category}",
+        policy_path(p),
+        data: { turbo_frame: "dynamic-panels" } %>
     </div>
   <% end %>
 </div>
+
+<!-- POLICY PREVIEW PANEL -->
+<turbo-frame id="dynamic-panels">
+  <div class="section-box">
+    <h2>Select a policy to view details</h2>
+    <p>The preview will appear here.</p>
+  </div>
+</turbo-frame>
 
 <!-- CHAT UI -->
 <div class="chat-container">

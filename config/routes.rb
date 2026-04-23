@@ -23,5 +23,9 @@ Rails.application.routes.draw do
       patch :update_status, on: :member   # d4 status buttons
       resources :messages, only: [:create] #add the HR reply route
     end
+
+    resources :policies, only: [:show] #d4.5.2.0 employee
   end
+
+  resources :policies, only: [:show]
 end

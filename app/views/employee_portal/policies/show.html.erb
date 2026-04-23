@@ -1,0 +1,18 @@
+<turbo-frame id="dynamic-panels">
+  <div class="section-box">
+    <h2><%= @policy.title %></h2>
+
+    <p><strong>Category:</strong> <%= @policy.category %></p>
+    <p><strong>Country:</strong> <%= @policy.country %></p>
+    <p><strong>Last Updated:</strong> <%= @policy.last_updated %></p>
+
+    <hr>
+
+    <h3>Policy Summary</h3>
+    <p><%= @policy.body %></p>
+
+    <p style="margin-top: 20px; color: #555;">
+      Not sure how this applies to you? Ask the AI assistant below.
+    </p>
+  </div>
+</turbo-frame>
