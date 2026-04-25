@@ -1,0 +1,26 @@
+<h2>Case Details</h2>
+
+<p><strong>Category:</strong> <%= @case.category %></p>
+<p><strong>Description:</strong> <%= @case.description %></p>
+
+<hr>
+
+<h2>Messages</h2>
+
+<turbo-frame id="messages_panel">
+  <div class="messages-panel">
+    <% @messages.each do |m| %>
+      <div class="message-item">
+        <p><strong><%= m.sender.capitalize %>:</strong> <%= m.content %></p>
+        <p class="timestamp"><%= m.created_at.strftime("%b %d, %H:%M") %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= form_with model: [@case, Message.new], data: { turbo_frame: "messages_panel" } do |f| %>
+    <div class="message-form">
+      <%= f.text_area :content, placeholder: "Write a message…" %>
+      <%= f.submit "Send", class: "btn-send" %>
+    </div>
+  <% end %>
+</turbo-frame>

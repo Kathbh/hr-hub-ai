@@ -1,31 +1,44 @@
 Rails.application.routes.draw do
-    # get 'employee_portal/show' (automatic)
   devise_for :users
-  resource :chat, only: [:show, :create]
-  # get 'chat/show'
-  # get 'chat/create'
+
+  # Teams (global)
+  resources :messages, only: [:create]
+
+  # Home
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get "/employee", to: "employee_portal#show"
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-  # Post Requests from the URL path, send request to AiController, method "chat"
-  # post "ai/chat", to: "ai#chat"
-  post "ai", to: "ai#create"
+  # Employee home (dashboard del empleado)
+  get "/employee", to: "employee_portal/employee_portal#show"
 
-  namespace :hr do   #d3
-    get "dashboard", to: "dashboard#show" #add the missing part
+
+  # Chat IA del empleado (EmployeePortal::ChatsController)
+  namespace :employee_portal do
+    post "ai/ask", to: "ai#ask"
+    
+    resource :chat, only: [:show, :create]
+    resources :policies, only: [:show]
     resources :cases, only: [:index, :show] do
-      patch :update_status, on: :member   # d4 status buttons
-      resources :messages, only: [:create] #add the HR reply route
+      resources :messages, only: [:create]
     end
 
-    resources :policies, only: [:show] #d4.5.2.0 employee
+    resources :messages, only: [:create]
   end
 
+  # HR Portal
+  namespace :hr do
+    get "dashboard", to: "dashboard#show"
+
+    resources :cases, only: [:index, :show] do
+      patch :update_status, on: :member
+      resources :messages, only: [:create]
+    end
+
+    resources :policies, only: [:show]
+  end
+
+  # Global policies (si las usas fuera del portal)
   resources :policies, only: [:show]
+
+  # Health check
+  get "up" => "rails/health#show", as: :rails_health_check
 end

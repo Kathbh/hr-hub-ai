@@ -119,14 +119,43 @@
   <% end %>
 </div>
 
-<!-- MESSAGES -->
+<!-- MESSAGES (Teams-like) -->
 <div class="section-box">
-  <h2>Your Messages</h2>
-  <% @messages.each do |m| %>
-    <div class="message-item">
-      <strong><%= m.sender.capitalize %>:</strong> <%= m.content %>
+  <h2>Messages</h2>
+
+  <!-- SELECT EMPLOYEE -->
+  <label>Chat with:</label>
+  <select id="chat_recipient">
+    <% @employees.each do |emp| %>
+      <option value="<%= emp.id %>"><%= emp.full_name %></option>
+    <% end %>
+  </select>
+
+  <!-- SEND MESSAGE -->
+  <%= form_with url: employee_portal_messages_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :recipient_id, id: "recipient_id_field" %>
+
+    <div class="mb-3">
+      <%= f.text_area :content, rows: 2, placeholder: "Write a quick message…" %>
     </div>
+
+    <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>
+
+  <script>
+    document.getElementById("chat_recipient").addEventListener("change", function() {
+      document.getElementById("recipient_id_field").value = this.value;
+    });
+  </script>
+
+  <!-- MESSAGE LIST -->
+  <div class="messages-list">
+    <% @messages.each do |m| %>
+      <div class="message-item">
+        <strong><%= m.sender.capitalize %>:</strong> <%= m.content %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <!-- POLICIES -->
@@ -135,7 +164,7 @@
   <% @policies.each do |p| %>
     <div class="policy-item">
       <%= link_to "#{p.title} — #{p.category}",
-        policy_path(p),
+        employee_portal_policy_path(p),
         data: { turbo_frame: "dynamic-panels" } %>
     </div>
   <% end %>
@@ -150,34 +179,9 @@
 </turbo-frame>
 
 <!-- CHAT UI -->
-<div class="chat-container">
-  <h1>Chat with your HR Global AI Assistant</h1>
-
-  <% if @messages.present? %>
-    <div class="message-card">
-      <% @messages.each do |msg| %>
-        <% if msg.sender == "employee" %>
-          <div class="user-msg">
-            <strong>You:</strong> <%= msg.content %>
-          </div>
-        <% else %>
-          <div class="assistant-msg">
-            <strong>Assistant:</strong> <%= msg.content %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <%= form_with url: chat_path, method: :post, local: true do |f| %>
-    <div class="mb-3">
-      <%= f.label :content, "Your message" %>
-      <%= f.text_area :content, class: "form-control", rows: 3 %>
-    </div>
-
-    <%= f.submit "Send", class: "send-btn" %>
-  <% end %>
-</div>
+<turbo-frame id="employee_ai_panel">
+  <%= render "employee_portal/employee_portal/chat" %>
+</turbo-frame>
 
 <a href="<%= root_path %>" class="floating-back-button">
   ← Back Home

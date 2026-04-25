@@ -1,0 +1,42 @@
+<div class="messages-panel">
+  <h2>Messages</h2>
+
+  <!-- DROPDOWN -->
+  <div class="message-recipient-select">
+    <%= form_with url: hr_dashboard_path, method: :get, local: true do |f| %>
+      <%= f.label :recipient_id, "Chat with:" %>
+      <%= f.collection_select :recipient_id, @employees, :id, :full_name,
+            { prompt: "Choose employee" },
+            { onchange: "this.form.submit()" } %>
+    <% end %>
+  </div>
+
+  <!-- MESSAGES LIST -->
+  <div class="messages-list">
+    <% if params[:recipient_id].present? %>
+      <% conversation = @messages.select { |m| m.employee_id == params[:recipient_id].to_i || m.recipient_id == params[:recipient_id].to_i } %>
+
+      <% if conversation.any? %>
+        <% conversation.each do |m| %>
+          <div class="message-item">
+            <strong><%= m.sender.capitalize %>:</strong> <%= m.content %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No messages yet.</p>
+      <% end %>
+
+    <% else %>
+      <p>Select someone to start chatting.</p>
+    <% end %>
+  </div>
+
+  <!-- FORMULARIO PARA ENVIAR MENSAJES -->
+  <% if params[:recipient_id].present? %>
+    <%= form_with url: messages_path, method: :post, local: true do |f| %>
+      <%= f.hidden_field :recipient_id, value: params[:recipient_id] %>
+      <%= f.text_area :content, rows: 2, placeholder: "Write a message…" %>
+      <%= f.submit "Send", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>

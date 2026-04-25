@@ -1,0 +1,88 @@
+/* Fondo igual al dashboard */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd6f2 0%, #d6e8ff 100%);
+  font-family: "Inter", sans-serif;
+}
+
+/* Tarjeta estilo dashboard */
+.login-card {
+  background: white;
+  padding: 40px;
+  width: 380px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Títulos con el rosa fuerte del dashboard */
+.login-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff4fa3;
+  margin-bottom: 5px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #6a6a6a;
+  margin-bottom: 25px;
+}
+
+/* Inputs estilo dashboard */
+.form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #4f78ff;
+  box-shadow: 0 0 6px rgba(79, 120, 255, 0.3);
+}
+
+/* Botón con el rosa fuerte del dashboard */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background: #ff4fa3;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.login-button:hover {
+  background: #e63f92;
+}
+
+/* Links con el azul del dashboard */
+.login-links {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-links a {
+  color: #4f78ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}

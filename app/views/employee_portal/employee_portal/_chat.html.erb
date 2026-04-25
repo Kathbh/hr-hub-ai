@@ -1,0 +1,32 @@
+<div class="chat-container">
+  <h1>Chat with your HR Global AI Assistant</h1>
+
+  <% if @messages.present? %>
+    <div class="message-card">
+      <% @messages.each do |msg| %>
+        <% if msg.sender == "employee" %>
+          <div class="user-msg">
+            <strong>You:</strong> <%= msg.content %>
+          </div>
+        <% else %>
+          <div class="assistant-msg">
+            <strong>Assistant:</strong> <%= msg.content %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form_with url: employee_portal_ai_ask_path,
+                method: :post,
+                data: { turbo_frame: "employee_ai_panel" },
+                html: { id: "employee-ai-form" } do |f| %>
+
+    <div class="mb-3">
+      <%= f.label :content, "Your message" %>
+      <%= f.text_area :content, class: "form-control", rows: 3 %>
+    </div>
+
+    <%= f.submit "Send", class: "send-btn" %>
+  <% end %>
+</div>

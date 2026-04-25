@@ -1,5 +1,6 @@
 class Message < ApplicationRecord
   belongs_to :employee
+  belongs_to :recipient, class_name: "Employee", optional: true
   belongs_to :case, optional: true
 
   validates :content, presence: true

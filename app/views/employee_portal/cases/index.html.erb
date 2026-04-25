@@ -1,0 +1,15 @@
+<h2>Your Cases</h2>
+
+<% if @cases.any? %>
+  <% @cases.each do |c| %>
+    <div class="case-item">
+      <p>
+        <strong><%= c.category %></strong><br>
+        Status: <%= c.status.capitalize %><br>
+        <%= link_to "Open Case", employee_portal_case_path(c), class: "btn" %>
+      </p>
+    </div>
+  <% end %>
+<% else %>
+  <p>You have no cases yet.</p>
+<% end %>

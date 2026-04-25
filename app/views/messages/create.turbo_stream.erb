@@ -1,0 +1,5 @@
+<turbo-stream target="messages_panel" action="replace">
+  <template>
+    <%= render partial: "hr/dashboard/messages_panel", formats: [:html], locals: { recipient_id: params[:recipient_id] } %>
+  </template>
+</turbo-stream>
