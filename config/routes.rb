@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # Chat IA del empleado (EmployeePortal::ChatsController)
   namespace :employee_portal do
     post "ai/ask", to: "ai#ask"
-    
+
     resource :chat, only: [:show, :create]
     resources :policies, only: [:show]
     resources :cases, only: [:index, :show] do
@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   # HR Portal
   namespace :hr do
     get "dashboard", to: "dashboard#show"
+
+     # HR AI Assistant
+    post "ai/ask", to: "ai#ask"
 
     resources :cases, only: [:index, :show] do
       patch :update_status, on: :member

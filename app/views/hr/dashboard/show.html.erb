@@ -45,27 +45,12 @@
   </div>
 
     <!-- RIGHT SIDE: AI PANEL -->
-  <div id="ai-panel" class="ai-side-panel" data-turbo="false">
-    <button id="close-ai-panel" class="close-ai-btn">✖</button>
-
-    <h2>AI Assistant</h2>
-
-    <%= form_with url: hr_dashboard_path, method: :get, data: { turbo: false } do |f| %>
-      <%= f.text_area :ai, rows: 4, placeholder: "Ask the AI…" %>
-      <%= f.submit "Generate", class: "ai-generate-btn" %>
-    <% end %>
-
-    <% if @ai_response.present? %>
-      <div class="ai-response-box">
-        <p><%= @ai_response %></p>
-      </div>
-    <% end %>
-  </div>
+  <turbo-frame id="hr_ai_panel">
+    <%= render "hr/dashboard/chat" %>
+  </turbo-frame>
 
   <button class="floating-ai-button">🤖</button>
 </div>
-
-
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
